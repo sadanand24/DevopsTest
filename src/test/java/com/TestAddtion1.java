@@ -14,10 +14,10 @@ public class TestAddtion1 {
 	@Test
 	public void testAdd() {
 		Addition1 ad = new Addition1();
-		Integer a = 5;
-		Integer b = 5;
+		int a = 5;
+		int b = 5;
 		System.out.println(a+b);
-		Assertions.assertEquals(ad.add1(a, b), 10);
+		Assertions.assertEquals(ad.add1(), 10);
 	}
 	
 }
