@@ -4,19 +4,19 @@ node{
 	}
 	
 	stage('mvn clean'){
-		def mavenHome = tool name: 'maven1', type: 'maven'
-		def mavenCMD = "${mavenHome}/bin/mvn"
-        sh "${mavenCMD} clean"
+	    def mavenHome = tool name: 'maven1', type: 'maven'
+	    def mavenCMD = "${mavenHome}/bin/mvn"
+            sh "${mavenCMD} clean"
 	}
 	
 	stage('mvn build, test, package'){
-		def mavenHome = tool name: 'maven1', type: 'maven'
-        def mavenCMD = "${mavenHome}/bin/mvn"
-        sh "${mavenCMD} package"
+	    def mavenHome = tool name: 'maven1', type: 'maven'
+            def mavenCMD = "${mavenHome}/bin/mvn"
+            sh "${mavenCMD} package"
 	}
 	
 	stage('mvn install'){
-		sh 'mvn install'
+	    sh 'mvn install'
 	}
 	
 	stage('docker build'){
@@ -25,8 +25,8 @@ node{
 	
 	stage('docker push'){
 	    withCredentials([string(credentialsId: 'dockerpwd', variable: 'docker-secrets')]) {
-        sh "docker login -u sadanand24 -p ${docker-secrets}"
-        }
+            sh "docker login -u sadanand24 -p ${docker-secrets}"
+            }
 	    sh 'docker push sadanand24/cicd:1.0.0'
 	}
 	
